@@ -1,0 +1,17 @@
+[
+  {
+    "isGold": true,
+    "username": "caoanhquan1990",
+    "phone": "123456789"
+  },
+  {
+    "isGold": true,
+    "username": "phihong110",
+    "phone": "0973290456"
+  },
+  {
+    "isGold": false,
+    "username": "johnnguyen",
+    "phone": "04455666678"
+  }
+]

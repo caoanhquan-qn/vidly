@@ -1,0 +1,14 @@
+[
+  {
+    "title": "Squid game",
+    "genreId": "61aa1e770a84a8a887a16c04",
+    "numberInStock": 5,
+    "dailyRentalRate": 7
+  },
+  {
+    "title": "Wuthering Heights",
+    "genreId": "61aa1e770a84a8a887a16c05",
+    "numberInStock": 3,
+    "dailyRentalRate": 6
+  }
+]

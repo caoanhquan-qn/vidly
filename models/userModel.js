@@ -24,6 +24,11 @@ const userSchema = new mongoose.Schema({
     minlength: 1,
     maxlength: 50,
   },
+  role: {
+    type: String,
+    enum: ['admin', 'user'],
+    default: 'user',
+  },
 });
 userSchema.methods.generateAuthToken = function (id) {
   return jwt.sign({ _id: id }, process.env.JWT_SECRET, {

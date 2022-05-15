@@ -24,6 +24,7 @@ exports.createUser = async (req, res) => {
       email: Joi.string().min(5).max(255).required().email(),
       password: Joi.string().min(5).max(1024).required(),
       name: Joi.string().min(1).max(50),
+      role: Joi.string(),
     });
     const { error } = schema.validate(req.body);
     if (error) {
@@ -37,4 +38,14 @@ exports.createUser = async (req, res) => {
   } catch (err) {
     res.status(400).send(err.message);
   }
+};
+
+exports.getMe = async (req, res) => {
+  const currentUser = await User.findById(req.user._id);
+  res.status(200).send({
+    status: 'success',
+    data: {
+      user: currentUser,
+    },
+  });
 };

@@ -10,7 +10,7 @@ mongoose
     useUnifiedTopology: true,
     autoIndex: true,
   })
-  .then(() => console.log('DB connected successfully'))
+  .then(() => console.log('Connected to MongoDB successfully...👍'))
   .catch((err) => console.log(err.message));
 
 const port = process.env.PORT || 3030;

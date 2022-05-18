@@ -1,7 +1,4 @@
 const express = require('express');
-require('express-async-errors');
-const winston = require('winston');
-require('winston-mongodb');
 const helmet = require('helmet');
 const homeRouter = require('./routes/homeRouter');
 const genreRouter = require('./routes/genreRouter');
@@ -11,26 +8,13 @@ const rentalRouter = require('./routes/rentalRouter');
 const userRouter = require('./routes/userRouter');
 const authRouter = require('./routes/authRouter');
 const handleError = require('./middleware/handleError');
+const logging = require('./logging');
 const app = express();
 
-process.on('uncaughtException', (err) => {
-  console.log('UNCAUGHT EXCEPTION. SHUTTING DOWN...💥');
-  winston.error(err.stack);
-  setTimeout(() => {
-    process.exit(1);
-  }, 1500);
-});
-process.on('unhandledRejection', () => {
-  console.log('UNHANDLED REJECTION. SHUTTING DOWN...💥');
-  process.exit(1);
-});
+logging();
 
-winston.add(new winston.transports.File({ filename: 'error.log' })).add(
-  new winston.transports.Console({
-    format: winston.format.simple(),
-  })
-);
-winston.add(new winston.transports.MongoDB({ db: process.env.DATABASE_LOCAL, level: 'error' }));
+// throw new Error('I am refactoring code so I m testing it now. Sorry for this inconvenience');
+// Promise.reject(new Error('I m refactoring code so it will better then'));
 
 // Built-in middleware
 app.use(express.json());

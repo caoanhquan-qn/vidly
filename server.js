@@ -3,17 +3,19 @@ const mongoose = require('mongoose');
 dotenv.config({ path: './config.env' });
 const app = require('./app');
 
-const DB = process.env.DATABASE_LOCAL;
+const DB = process.env.NODE_ENV === 'test' ? process.env.DATABASE_LOCAL_TEST : process.env.DATABASE_LOCAL;
 mongoose
   .connect(DB, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     autoIndex: true,
   })
-  .then(() => console.log('Connected to MongoDB successfully...👍'))
+  .then(() => console.log(`Connected to ${DB} successfully...👍`))
   .catch((err) => console.log(err.message));
 
 const port = process.env.PORT || 1337;
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log(`Server is running on port ${port}...`);
 });
+
+module.exports = server;

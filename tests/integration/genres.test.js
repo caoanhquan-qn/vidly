@@ -8,8 +8,8 @@ describe('/api/genres', () => {
     server = require('../../server');
   });
   afterEach(async () => {
-    server.close();
     await Genre.deleteMany({});
+    server.close();
   });
   describe('GET /', () => {
     it('should return all genres', async () => {

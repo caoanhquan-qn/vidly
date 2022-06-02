@@ -25,9 +25,6 @@ exports.createRental = async (req, res) => {
     const schema = Joi.object({
       customerId: Joi.string().required(),
       movieId: Joi.string().required(),
-      dateOut: Joi.date(),
-      dateReturned: Joi.date(),
-      rentalFee: Joi.number().min(0),
     });
     const { error } = schema.validate(req.body);
     if (error) {
@@ -41,6 +38,9 @@ exports.createRental = async (req, res) => {
     const movie = await Movie.findById(req.body.movieId);
     if (!movie) {
       throw new Error('The movie with given ID was not found');
+    }
+    if (movie.numberInStock === 0) {
+      return res.status(400).send('Movie is not in stock');
     }
     let rental = new Rental({
       customer: {
@@ -58,9 +58,6 @@ exports.createRental = async (req, res) => {
         dailyRentalRate: movie.dailyRentalRate,
         _id: movie._id,
       },
-      dateOut: req.body.dateOut,
-      dateReturned: req.body.dateReturned,
-      rentalFee: req.body.rentalFee,
     });
 
     Fawn.Task()
@@ -86,9 +83,6 @@ exports.updateRental = async (req, res) => {
     const schema = Joi.object({
       customerId: Joi.string(),
       movieId: Joi.string(),
-      dateOut: Joi.date(),
-      dateReturned: Joi.date(),
-      rentalFee: Joi.number().min(0),
     });
     const { error } = schema.validate(req.body);
     if (error) {

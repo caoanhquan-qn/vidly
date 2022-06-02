@@ -62,14 +62,10 @@ const rentalSchema = new mongoose.Schema({
   },
   dateReturned: {
     type: Date,
-    default: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000),
-    required: true,
   },
   rentalFee: {
     type: Number,
     min: 0,
-    default: 8,
-    required: true,
   },
 });
 

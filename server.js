@@ -5,13 +5,14 @@ const app = require('./app');
 
 const DB =
   process.env.NODE_ENV === 'test' ? process.env.DATABASE_LOCAL_TEST : process.env.DATABASE.replace('<PASSWORD>', process.env.DATABASE_PASSWORD);
+// console.log(DB);
 mongoose
   .connect(DB, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     autoIndex: true,
   })
-  .then(() => console.log(`Connected to ${DB} successfully...👍`))
+  .then(() => console.log('Connected to MongoDB successfully'))
   .catch((err) => console.log(err.message));
 
 const port = process.env.PORT || 1337;

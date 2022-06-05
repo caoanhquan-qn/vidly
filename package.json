@@ -9,7 +9,8 @@
     "test": "jest --watchAll --verbose --runInBand"
   },
   "engines": {
-    "node": "14.18.1"
+    "node": "14.18.1",
+    "npm": "6.14.15"
   },
   "author": "Quan Cao",
   "license": "ISC",

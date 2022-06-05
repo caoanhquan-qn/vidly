@@ -4,7 +4,7 @@ const Rental = require('../models/rentalModel');
 const Customer = require('../models/customerModel');
 const Movie = require('../models/movieModel');
 
-Fawn.init('mongodb://localhost:27017/vidly');
+Fawn.init(`mongodb://vidlyadmin:${process.env.DATABASE_PASSWORD}@cluster0.wlzh0.mongodb.net/vidly?retryWrites=true&w=majority`);
 //HTTP verbs request
 
 exports.getAllRentals = async (req, res) => {

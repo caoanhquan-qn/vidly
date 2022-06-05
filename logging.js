@@ -23,5 +23,4 @@ module.exports = function () {
       format: winston.format.simple(),
     })
   );
-  winston.add(new winston.transports.MongoDB({ db: process.env.DATABASE_LOCAL, level: 'error' }));
 };

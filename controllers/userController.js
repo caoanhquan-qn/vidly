@@ -14,7 +14,6 @@ exports.getUser = async (req, res) => {
   if (!user) {
     return res.status(404).send('The user with given ID was not found');
   }
-  console.log(user);
   res.status(200).send(user);
 };
 

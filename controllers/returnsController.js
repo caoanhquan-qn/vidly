@@ -10,10 +10,7 @@ exports.createReturns = async (req, res) => {
     });
     const { error } = schema.validate(req.body);
     if (error) throw error;
-    const rental = await Rental.findOne({
-      'customer._id': req.body.customerId,
-      'movie._id': req.body.movieId,
-    });
+    const rental = await Rental.lookup(req.body.customerId, req.body.movieId);
     if (!rental) {
       return res.status(404).send('No rental is found for this customer and movie');
     }
@@ -33,7 +30,7 @@ exports.createReturns = async (req, res) => {
     rental.movie.numberInStock++;
     await newReturn.save();
     await rental.save();
-    return res.status(201).send(newReturn);
+    res.status(201).send(newReturn);
   } catch (err) {
     res.status(400).send(err.message);
   }

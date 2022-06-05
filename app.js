@@ -5,6 +5,7 @@ const genreRouter = require('./routes/genreRouter');
 const customerRouter = require('./routes/customerRouter');
 const movieRouter = require('./routes/movieRouter');
 const rentalRouter = require('./routes/rentalRouter');
+const returnsRouter = require('./routes/returnsRouter');
 const userRouter = require('./routes/userRouter');
 const authRouter = require('./routes/authRouter');
 const handleError = require('./middleware/handleError');
@@ -26,6 +27,7 @@ app.use('/api/genres', genreRouter);
 app.use('/api/customers', customerRouter);
 app.use('/api/movies', movieRouter);
 app.use('/api/rentals', rentalRouter);
+app.use('/api/returns', returnsRouter);
 app.use('/api/users', userRouter);
 app.use('/api/auth', authRouter);
 
